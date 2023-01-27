@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- replace this with self hosted font -->
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <title>Lovebyte 2023 - 10-12th February 2023 : The biggest sizecoding / codegolfing demoparty event is back!</title>
+
+  <style>
+
+  * {
+    /*box-sizing: border-box;*/
+  }
+  body {
+    margin: 0;
+    color: #fff;
+    height: 100vh;
+    background-color: #000000;
+    background-image: url("img/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+
+  .container {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 100%;
+    overflow: hidden;
+  }
+
+  header {
+    background-color: #000000;
+	  display: flex;
+	  top 0px;
+	  height: 3rem;
+    min-height: 4rem;
+    width: 100%;
+    left: 0;
+  }
+
+  .headerLogo {
+    height: 3rem;
+  }
+
+  .nav {
+    position: absolute;
+    left: 10%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+	z-index:3;
+  }
+  .nav ul {
+    display: flex;
+    list-style-type: none;
+  }
+
+  .nav li:hover {
+    cursor: pointer;
+  }
+  .nav ul li {
+    position: relative;
+    padding:0 0.5em;
+    font-size:1.0em;
+    font-family: "Oxanium";
+  }
+  .nav ul a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .nav li a:hover:not(.active) {
+    color: #48ebdf;
+    /*font-weight: bold;*/
+	transform:scale(1.9)
+  }
+  .nav .active {
+    /* background-color: #4CAF50; */
+    font-weight: bolder;
+  }
+
+/*.nav ul li:hover ul {
+    display: block;
+}*/
+
+.nav ul li ul {
+  position: absolute;
+  padding:0 0.5em;
+  background-color: #000000;
+  visibility: hidden;
+  opacity: 0;
+  margin-top: 0rem;
+  left: 0;
+  display: none;
+}
+
+.nav ul li ul li {
+  position: relative;
+  font-size:1em;
+  font-family: "Oxanium";
+}
+
+.nav ul li:hover > ul,
+.nav ul li:focus-within > ul, /* this is the line we add */
+.nav ul li ul:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
+.nav ul li ul li {
+  clear: both;
+  width: 100%;
+}
+
+
+
+  /* hide the burger on big screens*/
+  .burger {
+
+    display:none
+  }
+
+  /* media stuff */
+  @media only screen and (max-width: 1024px) {
+
+    .burger {
+	  color: white;
+	  font-size: 3em;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: -3.25rem;
+    width: 50%;
+    left: 25%;
+	  user-select: none;
+    }
+
+
+	.nav ul li:hover > ul,
+    .nav ul li:focus-within > ul, /* this is the line we add */
+    .nav ul li ul:hover {
+     all: unset;
+	 	      font-size:0.75em;
+    font-family: "Oxanium";
+    }
+
+		.nav ul li ul {
+	  display none;
+	}
+
+
+    .nav {
+      display: flex;
+      justify-content: center;
+	  background: #343434;
+      top: -1000%;
+      width: 100%;
+	  z-index: 3;
+    left: 0%;
+    }
+	.nav ul {
+      display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  list-style-type: none;
+    }
+    .nav-active {
+       //ight: 0;
+		top: 4rem;
+	}
+
+  }
+
+  main {
+    display: flex;
+    flex: auto;
+    overflow-y: auto; /* add this to scroll*/
+    min-height: calc(100vh - 4rem);
+    width: 60%;
+    flex-direction: column;
+    /*background-color: green;*/
+    padding-left: 20%;
+	padding-right: 20%;
+
+  }
+
+   /* media stuff */
+  @media only screen and (max-width: 640px),
+  only screen and (max-width: 768px),
+  only screen and (max-width: 1024px)
+  {
+
+    .main {
+      width: 100%;
+      padding-left: 0%;
+	  padding-right: 0%;
+	}
+
+  }
+
+
+  .article {
+  margin-top: 4rem;
+  background-color: rgba(64, 64, 64, 0.5);
+	color: white;
+	opacity: 0.9;
+	border-radius: 15px;
+    padding: 1rem;
+	margin-bottom: 4rem;
+  }
+
+
+.article h1, .article h2, .article h3, .article h4, .article h5, .article h6 {
+	font-family: "Oxanium";
+		line-height: 1;
+}
+
+article h3 {
+  text-indent: 0.5em;
+}
+
+.article p {
+	margin-bottom: 15px;
+	margin-left: 0.5em;
+	line-height: 1.3;
+	font-family: Roboto;
+	font-weight: 300;
+}
+
+.article pre {
+ white-space: pre-wrap;       /* css-3 */
+	margin-bottom: 15px;
+	line-height: 1.3;
+	font-family: Roboto;
+	font-weight: 300;
+	text-indent: 0.5em;
+}
+
+.article a {
+	font-family: Roboto;
+  text-decoration: none;
+  font-weight: bold;
+  color: #ff4040;
+}
+
+  </style>
+
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header id="header" class="header">
+
+	  <img id="headerLogo" class="headerLogo" src="img/lovebyte.png" alt="LOVEBYTE">
+
+	  <div class="nav">
+        <ul>
+          <li class="navlink active about"><a href="#About">About</a></li>
+          <li class="navlink getready"><a href="#GetReady">Get Ready</a></li>
+          <li class="navlink compo"><a href="#Compos">Competitions</a></li>
+          <li class="navlink events"><a href="#Events">Events</a></li>
+	      <li class="navlink timetable"><a href="#Timetable">Timetable</a></li>
+	      <li class="navlink gestarted"><a href="#GetStarted">Get Started</a></li>
+          <li class="navlink rules"><a href="#Rules">Rules</a></li>
+          <li class="navlink vote"><a href="#Vote">Enter/Vote</a></li>
+</a></li>
+          <li class="navlink contact"><a href="#Contact">Contact</a></li>
+        </ul>
+	  </div>
+
+    </header>
+
+	<main class="main">
+
+    <div class="content">
+
+     <article class="article" id="About">
+      <h2> About </h2>
+	    <p>Join us in a celebration of the smallest with a dedicated sizecoding demoparty/event, held on the weekend of 10-12th February 2023 on <a href=" https://discord.gg/pUS5kCJTzp" target="_blank">Discord</a> and <a href="https://www.twitch.tv/lovebytedemoparty" target="_blank">Twitch</a></p>
+<p>
+This year we will take it to the next level with intro competitions in different size categories from 16 bytes to 1024 bytes. From our Tiny Executable Graphics and Nanogame competitions to Tiny CGA Pixel Graphics and Bytebeat Music competitions. 
+</p><p>
+Or what about cool size-coded related seminars to get you started, Bytejam, Introshows, DJ Sets and the many other events we have lined up for you.
+</p><p>
+We welcome everyone from newcomers to veterans and are open to all platforms. From oldschool Atari, Commodore, Amstrad & ZX Spectrum to High-end and Fantasy Console platforms. 
+</p>
+<p> This is the one event where size does matter! Don't miss it!</p>
+<p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mBmxcnH2l5c" title="Lovebyte 2023" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+      <p> <b>- Lovebyte 2023: Back by dope demand!</b></p>
+
+      <p>
+		  </article>
+</p> 
+	<article class="article" id="GetReady">
+		<h2>Get Ready for Lovebyte!</h2>
+        <p>Join us on January 14th on our <a href="https://www.twitch.tv/lovebytedemoparty" target="_blank">Twitch Channel</a> for a one-night stream as we get ready for the Lovebyte 2023 demoparty in february! We'll have a full evening of entertainment ready for you as we look ahead at the third edition of Lovebyte. 
+		</p>
+	</article>
+		<article class="article" id="Compos">
+
+      <h2>Competitions</h2>
+      <h3>New: 1k Intro Competitions</h3>
+      <p>This is our largest size category of 1024 bytes for High-End+FantasyConsole and Oldschool Platforms. This is a interesting size category where hand-optimized assembler code and shadercoders will meet.</p>
+
+      <h3>512 Byte/Bootsector intro competitions</h3>
+      <p>Push the limits of your regular tiny intro with a whopping 512 bytes size limit. We will have seperate competitions for High-End+FantasyConsole and Oldschool Platforms.</p>
+	  
+      <h3>256 Byte Intro Competitions</h3>
+      <p>We will have seperate 256 byte intro competitions for Oldschool, High-End and Fantasy Consoles. There will also be dedication competitions for atari and zx spectrum systems if we receive enough entries in the oldschool category.</p>
+	  
+      <h3>128 Byte Intro Competitions</h3>
+      <p>Here is where things start to get interesting in terms of size restrictions, the beloved 128 byte intro competition. We will have seperate competitions for High-End, Oldschool and Fantasy Console platforms. Go all out with an astonishing effect or do something more stylised, the choice is yours!</p>
+
+      <h3>64 Byte Intro Competitions</h3>
+      <p>We will have a seperate competition for High-End+FantasyConsole and Oldschool Platforms. If you really like a challenge, try our seasoned 64 byte intro competition. Surprise us with your skills and show us your best effect!</p>
+
+      <h3>32 Byte Intro Competitions</h3>
+      <p>From practice we have learned that this category is where things slowly start to get interesting in terms of single effects that can be achieved. We will have a seperate competition for High-End and Oldschool Platforms. Can you create a killer effect in just 32 bytes?</p>
+
+      <h3>16 Byte Intro Competitions</h3>
+      <p>This is the smallest sized competition we have at Lovebyte. While it seems like an impossible task, to get anything done in the size category. Our contestants have surprised us in previous years with their contributions, so that is why it will deserve its own compo at Lovebyte 2023.</p>
+
+      <h3>Nano Game Competitions</h3>
+      <p>Create a playable game in 256 bytes or less. Open to all platforms. We will have a seperate competition for High-End and Oldschool Platforms.</p>
+
+      <h3>8 byte Intro Showcase</h3>
+      <p>These smallest categories leave no room for error and are about the absolute limit of what can be achieved in terms of 
+	 moving imagery. This is why we have decided to organise a showcase instead of a competition for these entries. So
+	please submit your unreleased works if you'd like to be included in this awesome showcase with all new content!</p>
+
+      <h3>Tiny Executable Graphics Competition</h3>
+      <p>Create the best looking executable graphics in 256 bytes or less. Open to all platforms. We will have a seperate competition for High-End and Oldschool Platforms.</p>
+
+
+   <h3>Tiny CGA Pixels Graphics Competition</h3>
+      <p>We have not forgotten about all those talented graphics/pixel artists out there. But what can you do when you only have 256 bytes (1024 pixels / 4 colors) from one of the 6 standard CGA palettes to work with?</p>
+<p>
+CGA Palette 0 (<a href="https://lospec.com/palette-list/cga-palette-0-high" target="_blank">high</a> / <a href="https://lospec.com/palette-list/cga-palette-0-low" target="_blank">low)</a><br/>
+
+CGA Palette 1 (<a href="https://lospec.com/palette-list/cga-palette-1-high" target="_blank">high</a> / <a href="https://lospec.com/palette-list/cga-palette-1-low" target="_blank">low)</a><br/>
+
+CGA Palette 2 (<a href="https://lospec.com/palette-list/cga-palette-2-high" target="_blank">high</a> / <a href="https://lospec.com/palette-list/cga-palette-2-low" target="_blank">low)</a><br/>
+</p>
+<p>
+You are also free to pick your dimensions (for example 42x24, 32x32) as long as it fits in 1024 pixels and surprise us with your best art! You can use any of the above CGA palettes inside the online lospec graphics editor</p>
+
+  <h3>Bytebeat Music Competition</h3>
+      <p>Create music with just simple logical formulas in 256 characters or less using 
+    <a href="https://bytebeat.demozoo.org" target="_blank">this tool</a>
+      </p>
+      <p>New to the concept of bytebeats? Check out <a href="http://canonical.org/~kragen/bytebeat/" target="_blank">this page</a> for a quick introduction.
+
+      <h3>Out of Compo Showcase</h3>
+      <p>Got anything sizecoding related you'd like to share with the world, but none of the competitions above really fit?<br/>
+       Then our Out of Compo Showcase might just be the right place for your production.
+      </p>
+
+      <p>After the event, each of the top 3 individual competition winners will receive <b>a digital certificate by Sensenstahl</b></p>
+</article>
+		<article class="article" id="Byteathlon">
+      <h2>Byte-athlon</h2>
+	  <p>For those competing in multiple of the size coding competitions, we will have a <b>special multi-category Byte-athlon event</b>. Where we will determine who is the most skilled across 4 connected size categories between 16 and 1024 bytes.
+<p>* <b>Join the byteathlon</b> by submitting a prod in 4 connected categories, e.g. 16/32/64/128 bytes, 32/64/128/256 bytes, 64/128/256/512 bytes or 128/256/512/1024 bytes</p>
+<p>* You can <b>enter with a maximum of 2 entries per competition</b>. The highest ranked intro per size-category will receive points and will count towards total.</p>
+<p>* <b>Points are counted towards a total score</b> depending on competition results (starting at 10 points and decreasing for each author/entry).</p>
+<p>* So for between highest ranked entry in the 4 intro competitions you have submitted to, <b>a maximum of 40 points can be gained</b>.</p>
+<p>* If you'd like to submit to more than 4 connected categories, please <b>let us know which 4 categories you'd like to see counted for the byte-athlon beforehand</b> via the organizers comments field when uploading to our party system.</p>
+<p>* Nanogame and Tiny Executable Graphics do not count towards the byte-athlon.</p>
+<p>* In a case of a draw between points. The person with the lowest sized entries will win.</b>.</p>
+<p>* We'll be handing out <b>2 byte-athlon awards and prize packages</b>.</p>
+<img src="img/byteathlon_award_preview.jpg" width="25%">
+<p>At the award ceremony the winners of the byteathlon will receive a <b>special byteathlon award</b></p>
+
+    </article>
+	<article class="article" id="Events">
+
+		  <h2>Events</h2>
+
+	      <h3>The Nano Awards</h3>
+		  <p>Join us to find out who wins the award for best tiny intros of 2022 on high-end and oldschool platforms. More info at the <a href="https://nanoawards.lovebyte.party" target="_blank">Nano Awards website</a></p>
+
+		  <h3>Byte Battle Extravaganza</h3>
+		  <p>This year we will introduce some new interesting variations of the byte battle concept in Byte Battle Extravaganza</p>
+
+		  <h3>Seminars</h3>
+		  <p>Various seminars about a range of topics related to sizecoding and demoscene.</p>
+ 
+		  <h3>Ask us anything</h3>
+		  <p>Our expert panel of sizecoding legends will answer some of the most common or interesting sizecoding related questions on a wide range of topics.</p>
+
+		  <h3>Best of tiny intro's Shows</h3>
+		  <p>We'll show you the very best tiny intros around for all platforms MS-DOS, Atari, Spectrum and more.</p>
+
+		  <h3>Bytejam</h3>
+		  <p>Join our participants as they live-code using the TIC-80 Fantasy Console. 
+		  Check out this <a href="https://youtu.be/jtWhGDLetR0" target="_blank">30 second video</a> to see what it is all about.
+		  </p>
+
+		  <h3>DJ sets</h3>
+		  <p>Enjoy fine music sets by various artists.</p>
+
+		  <h3> And much more... </h3>
+		  <p>Morning relaxation, Sizecoding tips and tricks and much much more</p>
+    </article>
+
+		<article class="article" id="Timetable">
+	<h2>Time Table</h2>
+ 	<h3>December 12-23 2022 - Tiny Code Christmas</h3>
+	<p>
+	Tiny Code Christmas: <a href="https://tcc.lovebyte.party" target="_blank">https://tcc.lovebyte.party</a>
+	</p>
+ 	<h3>Saturday, January 14th 2023 - Get Ready for Lovebyte!</h3>
+	<p>
+	20.00-24.00 (UTC+1) Get Ready for Lovebyte stream!<br/>
+	</p>
+ 	<h3>Friday, February 10th 2023</h3>
+	<p>
+	20.00 (UTC+1) Introshow and countdown<br/>
+	21.00 (UTC+1) Opening Show with ps and guests<br/>
+	22.30 (UTC+1) Nano Awards 2023<br/>
+	23.00 (UTC+1) Bytejam<br/>
+	</p>
+ 	<h3>Saturday, February 11th 2023</h3>
+	<p>
+	9.00 (UTC+1) Morning Relaxation<br/>
+	10.00 (UTC+1) A year in sizecoding with PS, part 1<br/>
+	11.00 (UTC+1) Seminar: How to run a bytejam, by aldroid<br/>
+	12.00 (UTC+1) Out of Compo Showcase<br/>
+	13.00 (UTC+1) Intro show<br/>
+	14.00 (UTC+1) Bytebattle Extravaganza<br/>
+	15.00 (UTC+1) Ask us Anything, part 1<br/>
+	16.00 (UTC+1) Intro show<br/>
+	17.00 (UTC+1) Competition: Bytebeat music<br/>
+	18.00 (UTC+1) DJ Set: TBA<br/>
+	19.00 (UTC+1) Competitions: Tiny Executable Graphics (Oldschool & Hi-end)<br/>
+	20.00 (UTC+1) Competitions: 64 byte intro (Oldschool & Hi-end)<br/>
+	21.00 (UTC+1) Competitions: 128 byte intro (Oldschool, Fantasy Console & Hi-end)<br/>
+	22.00 (UTC+1) Competitions: 512 byte intro (Oldschool & Hi-end)<br/>
+	23.00 (UTC+1) Competitions: 1024 byte intro (Oldschool & Hi-end)<br/>
+	24.00 (UTC+1) DJ Set: Syntax Error Stockholm<br/>
+	</p>
+ 	<h3>Sunday, February 12th 2023</h3>
+	<p>
+	9.00 (UTC+1) Morning Relaxation<br/>
+	10.00 (UTC+1) A year in sizecoding with PS, part 2<br/>
+	10.30 (UTC+1) New 8 byte intro showcase<br/>
+	11.00 (UTC+1) Seminar: Audio synthesis with Pestis<br/>
+	12.00 (UTC+1) Competition: 16 byte intro (Oldschool & Hi-end)<br/>
+	13.00 (UTC+1) Ask us Anything, part 2<br/>
+	14.00 (UTC+1) Competition: Nano game (Oldschool & Hi-end)<br/>
+	15.00 (UTC+1) Byte Battle Extravaganza<br/>
+	16.00 (UTC+1) Intro show<br/>
+	17.00 (UTC+1) Competition: TINY CGA pixel graphics<br/>
+	18.00 (UTC+1) DJ Set: TBA<br/>
+	19.00 (UTC+1) Competitions: 32 byte intro (Oldschool & Hi-End)<br/>
+	20.00 (UTC+1) Byte Battle Extravaganza<br/>
+	20.45 (UTC+1) Surprise guest appearance<br/>
+	21.00 (UTC+1) Competitions: 256 byte intro (Fantasy Console, Hi-end, Oldschool)<br/>
+	23.30 (UTC+1) Results Show & Closing<br/>
+	24.00 (UTC+1) DJ Set: Lynndrum Live!<br/>
+	</p>
+ 	</article>
+
+    <article class="article" id="Rules">
+	<h2>General Rules</h2>
+	<p>* You can enter as many competitions as you like, with a maximum of 2 entries per competition</p>
+      <p>* Please include a screenshot and <b>video capture</b<> of your intro in 1280x720 MP4 format.</b></p>
+      <p>* Our <b>definition of oldschool platforms</b> is: 8/16 bit home computers, 8/16 bit game consoles and handhelds and 8088/286 PC's (8 mhz/1000 cycles, MDA/CGA/EGA)</p>
+      <p>* Our <b>definition of high-end platforms</b> is: X86/DOS (386+, VGA), Linux, Windows, RISCOS, Motorola 68040+, Fantasy Consoles/Processing/VM.</p>
+      <p>* <b>Fantasy Consoles:</b> If there is no dedicated Fantasy Console competition mentioned, you are free to submit your production toour high-end competitions.</p>
+      <p>* <b>Processing:</b> We will accept processing sketch files (PDE fileformat, Java  mode) of the proper target size in our high-end competitions.</p>
+      <p>* For <b>executable entries in the 128 byte, 256 byte, 512 byte and 1024 byte categories</b>, we will look at the binary filesize (including any headers).</p>
+      <p>* For <b>Amiga and Atari ST entries of 128 byte</b>, we will not count the header size.</p>
+      <p>* For <b>executable entries of 64 bytes or less</b>, we will not count the header size.</p>
+      <p>* All entries will have a running time of maximum 1 minute, unless specifically requested by the author.</p>
+      <p>* Only original and unreleased works are allowed.</p>
+      <p>* Please include a FILE_ID.DIZ with a description of your prod.</p>
+      <p>* Obey the <a href="codeofconduct.html" target="_blank">code of conduct</a>.</p>
+      <p>* The organizers' decisions are final. We want to show off all your work to the standard it deserves, but we are doing this in our spare time and things can go wrong. Getting your entries in before the deadline is a good way to ensure that it gets shown!</p>
+
+      <h2> Competition Specific Rules </h2>
+      <p>* <b>TIC-80 Entries</b> need to be delivered as a TIC file with of the target size (256b,128b,etc.) or less.</p>
+      <p>* <b>PICO-8 entries</b> need to be delivered as a compressed or raw P8.ROM file with of the target size (256b,128b,etc.) or less.</p>
+      <p>* <b>Fantasy Console entries</b> of 64 bytes and below are calculated without mandatory header (8 bytes for compressed P8.ROM, 4/5 bytes on TIC-80).</p>
+      <p>* <b>DOS intros</b> can be shown in Dosbox or Freedos, But we would appreciate it if you include a MSDOS/Freedos compatible version as well. Escape support is appreciated but not required</p>
+      <p>* <b>ZX Spectrum intros</b> need to be delivered as a TAP/SNA file with minimum basic loader as well as a 256 binary file (to be executed from basic).</p>
+      <p>* <b>Atari STe/Amiga entries</b> of 128 byte and below are calculated without mandatory header (32 bytes)</p>
+      <p>* <b>Atari 8bit entries</b> of 64 bytes and below are calculated without mandatory header (6 bytes)</p>
+      <p>* <b>Commodore 64 entries</b> of 64 bytes and below are calculated without mandatory header (2 bytes) and don't require autorun in any size category (please supply starting address).</p>
+      <p>* <b>Amstrad CPC entries</b> need be supplied as raw binary with loading instructions and/or minimal basic loader on disk (MEMORY &startaddress-1
+LOAD "myintro.bin",&startaddress CALL &startaddress).</p>
+      <p>* <b>Oldschool gameconsole / handheld entries:</b> Rom mirroring (i.e. duplicating exact binary data to sit at required rom-offset) is allowed.</p>
+      <p>* <b>Tiny Executable Graphics</b> A maximum of approx. 1 minute of precalculation and/or onscreen drawing is allowed. Interlacing is allowed, but no animation or scrolling is allowed.</p>
+      <p>* <b>Bytebeat entries</b> (bytebeat mode, infix/postfix, 8-44khz) will have a playing time of 1 minute and will be played using <a href="https://bytebeat.demozoo.org" target="_blank">bytebeat.demozoo.org (greggman)</a>. Please provide a bytebeat.demozoo.org URL with your entry.</p>
+      <p>* <b>Tiny CGA Pixel Graphics</b> need to be delivered as PNG file, using on of the 6 standard CGA palettes:
+CGA Palette 0 (<a href="https://lospec.com/palette-list/cga-palette-0-high" target="_blank">high</a> / <a href="https://lospec.com/palette-list/cga-palette-0-low" target="_blank">low)</a>, CGA Palette 1 (<a href="https://lospec.com/palette-list/cga-palette-1-high" target="_blank">high</a> / <a href="https://lospec.com/palette-list/cga-palette-1-low" target="_blank">low)</a> or CGA Palette 2 (<a href="https://lospec.com/palette-list/cga-palette-2-high" target="_blank">high</a> / <a href="https://lospec.com/palette-list/cga-palette-2-low" target="_blank">low)</a><br/>
+
+      <p>* <b>Tiny CGA Pixel Graphics</b> can be in any rectangular dimension that fits within 1024 unique pixels. Please mention the selected resolution in the entry description when submitting.</p>
+ 
+
+
+
+    </article>
+
+
+		<article class="article" id="GetStarted">
+		<h2>Getting started</h2>
+        <p>This event is all about sharing the love for small sized demoscene productions. So if this event peeked your interest, but you don't know how to get started, let us help out with a number of starter packs that help to get you off your feet</p>
+  		<p>Fantasy Console Sizecoding - We will hold a special event from december 12 to 23rd 2022 called Tiny Code Christmas to help newcomers get started at <a href="https://tcc.lovebyte.party" target="_blank">https://tcc.lovebyte.party</a>
+</p>
+  		<p>DOS Sizecoding - <a href="">(soon)</a></p>
+ 		<p>ZX Spectrum sizecoding - <a href="https://www.youtube.com/watch?v=q0cnGaa-Rig&list=PLr4JCYhdWe8mq3aDvAtL0ooO7hAC9gU2s" target="_blank">ZX Spectrum sizecoding seminar by Gasman</a> and <a href="http://www.sizecoding.org/wiki/Z80_based_CPUs#ZX_Spectrum" target="_blank">Starters guide</a></p>
+ 		<p>Atari 8bit sizecoding - <a href="https://www.youtube.com/watch?v=ezQuRA1FPJ0&list=PLr4JCYhdWe8mq3aDvAtL0ooO7hAC9gU2s&index=4" target="_blank">Atari 8-bit sizecoding seminar by F#READY</a> and <a href="http://www.sizecoding.org/wiki/6502_based_CPUs#Atari_8bit_family" target="_blank">Starters guide</a></p>
+                <p>Commodore 64 Sizecoding - <a href="http://www.sizecoding.org/wiki/6502_based_CPUs#Commodore_64" target="_blank">Starters guide</a></p>
+                <p>Bytebeat music - <a href="bytebeat_rpn_guide.pdf" target="_blank">A Bytebeat and RPN starters guide by Ravary (PDF)</a></p>
+ 		<p>We also have a <b>dedicated playlist on our youtube channel</b> called <a href="https://www.youtube.com/watch?v=q0cnGaa-Rig&list=PLr4JCYhdWe8mq3aDvAtL0ooO7hAC9gU2s" target="_blank">Lovebyte Seminars</a> with all kinds of sizecoding related seminars. During the event we will have and add more seminars and tips to help you out, so stay tuned for those!</p>
+ 		<p>And don't forget to visit <a href="http://www.sizecoding.org" target="_blank">sizecoding.org</a> for more information on all the above 		platforms and/or join the <a href="https://discord.gg/vqWQTqZCDa" target="_blank">Sizecoding discord.</a></p>
+		</article>
+
+
+    <article class="article" id="Vote">
+      <h2>Enter/Vote</h2>
+      <p>Upload your entry to our party system at <a href="https://wuhu.lovebyte.party" target=_blank">https://wuhu.lovebyte.party</a>
+</p>
+<p>    Watch our <a href="https://wuhu.lovebyte.party" target=_blank">video tutorial</a> on how to submit your entry for Lovebyte 2023 if you are new to the entry submission process.
+</p>
+         <p>Contact us on the Lovebyte Discord or by mailing to lovebyteparty@protonmail.com to get your votekey needed for registration. For people in countries where protonmail is blocked you can use superogue1@hotmail.com</p>
+
+	<h2>Deadlines</h2>
+     	<p>Final deadline is the 9th of February 2023, 23.59 (UTC+1)</p>
+    </article>
+
+
+  <article class="article" id="Contact">
+          <h2>Contact</h2>
+          <p>Contact us at <a href="mailto:lovebyteparty@protonmail.com" id="mailto">lovebyteparty@protonmail.com</a> , <a href="https://discord.gg/pUS5kCJTzp" target="_blank">Discord</a> , <a href="https://twitter.com/lovebyteparty" target="_blank">Twitter</a>, <a href="https://graphics.social/@lovebyteparty" target="_blank">Mastodon</a> and on <a href="https://www.twitch.tv/lovebytedemoparty" target="_blank">Twitch</a></p>
+	 <p><em>Feel free to contact us if you want your promo slide (1280x720 PNG) to be included in our slide rotation segments</em></p>
+
+    </article>
+
+    </div>
+
+    </main>
+
+  </div>
+
+  <script>
+
+  //get the body
+  let body = document.body;
+
+  const headerLogo = document.querySelector('.headerLogo');
+  console.log(headerLogo);
+
+
+//test pages
+const pageAbout = document.querySelector('.about');
+const pageCompo = document.querySelector('.compo');
+const pageEvents = document.querySelector('.events');
+const pageTimetable = document.querySelector('.timetable');
+const pageRegister = document.querySelector('.register');
+const pageVote = document.querySelector('.vote');
+const pageCode = document.querySelector('.code');
+const pageContact = document.querySelector('.contact');
+
+pageAbout.addEventListener('click', function() {
+ toggleNav();
+});
+pageCompo.addEventListener('click', function() {
+ toggleNav();
+});
+pageEvents.addEventListener('click', function() {
+ toggleNav();
+});
+pageTimetable.addEventListener('click', function() {
+ toggleNav();;
+});
+pageVote.addEventListener('click', function() {
+ toggleNav();
+});
+pageCode.addEventListener('click', function() {
+ toggleNav();
+});
+pageContact.addEventListener('click', function() {
+ toggleNav();
+});
+
+
+// Selection of HTML objects
+const burger = document.querySelector('.burger p');
+console.log("burger", burger)
+const nav = document.querySelector(' .container .nav');
+
+// Defining a function
+function toggleNav() {
+    //burger.classList.toggle('fa-bars');
+    //burger.classList.toggle('fa-times');
+    nav.classList.toggle('nav-active');
+}
+
+// Calling the function after click event occurs
+burger.addEventListener('click', function() {
+    toggleNav();
+});
+
+
+
+nav.addEventListener('click', function() {
+
+ var myEle = document.getElementById("myElement");
+    if(myEle){
+        var myEleValue= myEle.value;
+    }
+
+/*
+    let isMobile = window.matchMedia("only screen and (max-width: 1024px)").matches;
+
+    if (isMobile) {
+    } else {
+	  toggleNav();
+	}
+	*/
+
+    /*toggleNav();*/
+
+});
+
+let buttonSections = document.querySelectorAll(".navlink");
+for (let i = 0; i < buttonSections.length; i++) {
+  buttonSections[i].addEventListener("click", function() {
+    let current = document.getElementsByClassName("active");
+    if (current.length > 0) {
+      current[0].className = current[0].className.replace(" active", "");
+    }
+    this.className += " active";
+  });
+}
+
+  </script>
+
+</body>
+
+
+</html>
