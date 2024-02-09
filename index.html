@@ -826,7 +826,7 @@ for (let i = 0; i < buttonSections.length; i++) {
 
     // getLocalTimezoneUTC takes a guess at our local UTC offset, provided by the browser (or OS?)
     const getLocalTimezoneUTC = () => {
-      return new Date().getTimezoneOffset() / 60;
+      return -new Date().getTimezoneOffset() / 60;
     }
 
     // getTimezoneLegend converts our offset into "UTC+/-X"
