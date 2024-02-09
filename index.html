@@ -299,7 +299,7 @@
           <li class="navlink compo"><a href="#Compos">Competitions</a></li>
           <li class="navlink events"><a href="#Events">Events</a></li>
           <li class="navlink timetable"><a href="#Timetable">Timetable</a></li>
-          <li class="navlink gestarted"><a href="#GetStarted">Get Started</a></li>
+          <li class="navlink getstarted"><a href="#GetStarted">Get Started</a></li>
           <li class="navlink rules"><a href="#Rules">Rules</a></li>
           <li class="navlink vote"><a href="https://wuhu.lovebyte.party" target=_blank">Enter/Vote</a></li>
           <li class="navlink contact"><a href="#Contact">Contact</a></li>
@@ -332,14 +332,9 @@
           <p><iframe style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; border: none;" src="https://www.youtube.com/embed/foaXTw45hjA" width="560" height="315" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></p>
         </div>
       </div>
-      <p>
-        <b>- Lovebyte 2024</b>
-      </p>
+		</article>
 
-      <p>
-		  </article>
-</p> 
-		<article class="article" id="Compos">
+    <article class="article" id="Compos">
 
       <h2>Competitions</h2>
       <h3>1k Intro Competitions</h3>
@@ -742,7 +737,6 @@
   let body = document.body;
 
   const headerLogo = document.querySelector('.headerLogo');
-  console.log(headerLogo);
 
 
 //test pages
@@ -750,6 +744,7 @@ const pageAbout = document.querySelector('.about');
 const pageCompo = document.querySelector('.compo');
 const pageEvents = document.querySelector('.events');
 const pageTimetable = document.querySelector('.timetable');
+const pageGetStarted = document.querySelector('.getstarted');
 const pageRegister = document.querySelector('.register');
 const pageVote = document.querySelector('.vote');
 const pageCode = document.querySelector('.code');
@@ -765,6 +760,9 @@ pageEvents && pageEvents.addEventListener('click', function() {
  toggleNav();
 });
 pageTimetable && pageTimetable.addEventListener('click', function() {
+ toggleNav();;
+});
+pageGetStarted && pageGetStarted.addEventListener('click', function() {
  toggleNav();;
 });
 pageVote && pageVote.addEventListener('click', function() {
