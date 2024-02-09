@@ -326,9 +326,11 @@ table.timetable td {
       <p>
       This is the one event where size does matter! Don't miss it!
       </p>
-      <p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/foaXTw45hjA" title="Lovebyte 2023" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </p>
+      <div style="width: 100%; min-width: 400px; max-width: 800px;">
+        <div style="position: relative; width: 100%; overflow: hidden; padding-top: 56.25%;">
+          <p><iframe style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; border: none;" src="https://www.youtube.com/embed/foaXTw45hjA" width="560" height="315" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></p>
+        </div>
+      </div>
       <p>
         <b>- Lovebyte 2024</b>
       </p>
@@ -810,13 +812,15 @@ for (let i = 0; i < buttonSections.length; i++) {
 
     // This is configurable :)
     const PARTY_TIMEZONE_UTC = 1;
+    // This needs to be matched in the timeOfDay content (brittle, but works for us, for now!)
+    const PARTY_TIMEZONE_UTC_STRING = "UTC+1"; 
 
     // initAllTimes takes all elements with .timeOfDay and preps them for live updates.
     const initAllTimes = () => {
       document.querySelectorAll(".timeOfDay").forEach((el) => {
         const content = el.textContent;
         const matches = content.match(/(\d{1,2}).(\d{2}) \((.*)\)/);
-        if (!matches || matches.length != 4 || matches[3] != "UTC+1") {
+        if (!matches || matches.length != 4 || matches[3] != PARTY_TIMEZONE_UTC_STRING) {
           return;
         }
 
@@ -855,7 +859,7 @@ for (let i = 0; i < buttonSections.length; i++) {
         el.textContent = String(hour).padStart(2, '0') + '.' + String(minute).padStart(2, '0') + " (" + legend + ")";
       });
 
-      const qualifier = (hourOffset == 0 ? '' : '(in the party timezone)');
+      const qualifier = (hourOffset == 0 ? '' : '(party timezone)');
       document.querySelectorAll(".timezone-qualifier").forEach((el) => {
         el.textContent = qualifier;
       });
@@ -863,7 +867,7 @@ for (let i = 0; i < buttonSections.length; i++) {
 
     // timezoneSelectUpdated is a handler for when the <select> element changes
     const timezoneSelectUpdated = () => {
-      const offset = parseInt(document.getElementById("timezone-select").value);
+      const offset = parseFloat(document.getElementById("timezone-select").value);
       setTimezone(offset, getTimezoneLegend(offset));
     }
 
