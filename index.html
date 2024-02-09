@@ -279,6 +279,10 @@ table.timetable td {
   padding: 0.5em;
   list-style-image: url('./img/lovebyte-icon-bullet.png');
 }
+
+.timezone-qualifier {
+  font-size: 70%;
+}
   </style>
 </head>
 
@@ -442,7 +446,7 @@ table.timetable td {
 
       <div id="timezone-ui"></div>
 
-      <h3>Friday, February 9th 2024</h3>
+      <h3>Friday, February 9th 2024 <span class="timezone-qualifier"></span></h3>
       <table class="timetable">
         <tbody>
           <tr>
@@ -468,7 +472,7 @@ table.timetable td {
         </tbody>
       </table>
 
-    <h3>Saturday, February 10th 2024</h3>
+    <h3>Saturday, February 10th 2024 <span class="timezone-qualifier"></span></h3>
     
     <table class="timetable">
       <tbody>
@@ -539,7 +543,7 @@ table.timetable td {
       </tbody>
     </table>
 
-    <h3>Sunday, February 11th 2024</h3>
+    <h3>Sunday, February 11th 2024 <span class="timezone-qualifier"></span></h3>
 
     <table class="timetable">
       <tbody>
@@ -837,7 +841,7 @@ for (let i = 0; i < buttonSections.length; i++) {
     // setTimezone takes an offset and a legend, and updates all .timeOfDay elements to reflect the new timezone
     const setTimezone = (utcOffset, legend) => {
       const hourOffset = utcOffset - PARTY_TIMEZONE_UTC;
-      const element = document.querySelectorAll(".timeOfDay").forEach((el) => {
+      document.querySelectorAll(".timeOfDay").forEach((el) => {
         let hourAsFraction = el.getAttribute("data-hour-as-fraction");
         if (!hourAsFraction) {
           return;
@@ -849,6 +853,11 @@ for (let i = 0; i < buttonSections.length; i++) {
         const minute = (hourAsFraction - hour) * 60;
 
         el.textContent = String(hour).padStart(2, '0') + '.' + String(minute).padStart(2, '0') + " (" + legend + ")";
+      });
+
+      const qualifier = (hourOffset == 0 ? '' : '(in the party timezone)');
+      document.querySelectorAll(".timezone-qualifier").forEach((el) => {
+        el.textContent = qualifier;
       });
     }
 
