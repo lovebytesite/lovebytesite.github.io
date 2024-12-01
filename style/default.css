@@ -8,6 +8,11 @@ html {
     box-sizing: inherit;
 }
 
+em {
+    font-style: normal;
+    font-weight: bold;
+}
+
 body {
     margin: 0;
     color: #fff;
@@ -148,7 +153,6 @@ main {
     }
 }
 
-
 .article {
     max-width: 1000px;
     margin-top: 2em;
@@ -206,7 +210,7 @@ table.timetable td {
     white-space: nowrap;
 }
 
-.centred {
+.centre {
     text-align: center;
 }
     
