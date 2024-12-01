@@ -50,6 +50,7 @@ header {
     display: flex;
     justify-content: center;
     z-index:3;
+    font-family: "Oxanium";
 }
 
 .nav ul {
@@ -61,56 +62,23 @@ header {
     cursor: pointer;
 }
 
-.nav ul li {
+.nav li {
     position: relative;
-    padding:0 0.5em;
-    font-size:1.0em;
-    font-family: "Oxanium";
+    padding: 0.4rem 0.8rem;
+    font-size: 1.0em;
 }
 
-.nav ul a {
+.nav a {
     color: white;
     text-decoration: none;
 }
 
-.nav li a:hover:not(.active) {
+.nav li:hover a:not(.active) {
     color: #48ebdf;
-    /*font-weight: bold;*/
     transform:scale(1.9)
 }
 .nav .active {
-    /* background-color: #4CAF50; */
     font-weight: bolder;
-}
-
-.nav ul li ul {
-    position: absolute;
-    padding:0 0.5em;
-    background-color: #000000;
-    visibility: hidden;
-    opacity: 0;
-    margin-top: 0rem;
-    left: 0;
-    display: none;
-}
-
-.nav ul li ul li {
-    position: relative;
-    font-size:1em;
-    font-family: "Oxanium";
-}
-
-.nav ul li:hover > ul,
-.nav ul li:focus-within > ul, /* this is the line we add */
-.nav ul li ul:hover {
-    visibility: visible;
-    opacity: 1;
-    display: block;
-}
-
-.nav ul li ul li {
-    clear: both;
-    width: 100%;
 }
 
 /* hide the burger on big screens*/
@@ -132,23 +100,11 @@ header {
         user-select: none;
     }
 
-
-    .nav ul li:hover > ul,
-    .nav ul li:focus-within > ul, /* this is the line we add */
-    .nav ul li ul:hover {
-        all: unset;
-        font-size:0.75em;
-        font-family: "Oxanium";
-    }
-
-    .nav ul li ul {
-        display: none;
-    }
-
+    /* Vertical nav */
     .nav {
         display: flex;
         justify-content: right;
-        background: #343434;
+        background: rgba(30, 30, 30, 0.9);
         top: -1000%;
         width: 100%;
         z-index: 3;
@@ -163,6 +119,10 @@ header {
         flex-direction: column;
         justify-content: center;
         list-style-type: none;
+    }
+
+    .nav li {
+        padding: 0 0;
     }
 
     .nav-active {

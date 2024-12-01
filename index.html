@@ -19,20 +19,20 @@
 			<img id="headerLogo" class="headerLogo" src="img/lovebyte.png" alt="LOVEBYTE">
 
 			<div class="nav">
-					<ul>
-						<li class="navlink active about"><a href="#about">About</a></li>
-						<li class="navlink compo"><a href="#competitions">Competitions</a></li>
-						<li class="navlink events"><a href="#events">Events</a></li>
-						<li class="navlink timetable"><a href="#timetable">Timetable</a></li>
-						<li class="navlink getstarted"><a href="#get-started">Get Started</a></li>
-						<li class="navlink rules"><a href="#rules">Rules</a></li>
-						<li class="navlink party-system"><a href="#party-system">Enter/Vote</a></li>
-						
-						<!--
-						<li class="navlink"><a href="https://wuhu.lovebyte.party" target=_blank">Enter/Vote</a></li>
-						-->
-						<li class="navlink contact"><a href="#contact">Contact</a></li>
-					</ul>
+				<ul>
+					<li class="navlink about"><a href="#about">About</a></li>
+					<li class="navlink compo"><a href="#competitions">Competitions</a></li>
+					<li class="navlink events"><a href="#events">Events</a></li>
+					<li class="navlink timetable"><a href="#timetable">Timetable</a></li>
+					<li class="navlink getstarted"><a href="#get-started">Get Started</a></li>
+					<li class="navlink rules"><a href="#rules">Rules</a></li>
+					<li class="navlink party-system"><a href="#party-system">Enter/Vote</a></li>
+					
+					<!--
+					<li class="navlink"><a href="https://wuhu.lovebyte.party" target=_blank">Enter/Vote</a></li>
+					-->
+					<li class="navlink contact"><a href="#contact">Contact</a></li>
+				</ul>
 			</div>
 			<div class="burger">
 				<p>&#9776;</p>
@@ -434,64 +434,33 @@
 </script>
 
 <script>
-	//get the body
-	let body = document.body;
-
-	const headerLogo = document.querySelector('.headerLogo');
-
-	const pageAbout = document.querySelector('.about');
-	const pageCompo = document.querySelector('.compo');
-	const pageEvents = document.querySelector('.events');
-	const pageTimetable = document.querySelector('.timetable');
-	const pageGetStarted = document.querySelector('.getstarted');
-	const pageRules = document.querySelector('.rules');
-	const pageRegister = document.querySelector('.register');
-	const pageVote = document.querySelector('.vote');
-	const pageCode = document.querySelector('.code');
-	const pageContact = document.querySelector('.contact');
-
-	pageAbout && pageAbout.addEventListener('click', function() {
-		toggleNav();
-	});
-	pageCompo && pageCompo.addEventListener('click', function() {
-		toggleNav();
-	});
-	pageEvents && pageEvents.addEventListener('click', function() {
-		toggleNav();
-	});
-	pageTimetable && pageTimetable.addEventListener('click', function() {
-		toggleNav();;
-	});
-	pageGetStarted && pageGetStarted.addEventListener('click', function() {
-		toggleNav();;
-	});
-	pageRules && pageRules.addEventListener('click', function() {
-		toggleNav();;
-	});
-	pageVote && pageVote.addEventListener('click', function() {
-		toggleNav();
-	});
-	pageCode && pageCode.addEventListener('click', function() {
-		toggleNav();
-	});
-	pageContact && pageContact.addEventListener('click', function() {
-		toggleNav();
-	});
-
-
-	// Selection of HTML objects
-	const burger = document.querySelector('.burger p');
 	const nav = document.querySelector(' .container .nav');
 
-	function toggleNav() {
-			nav.classList.toggle('nav-active');
-	}
-
-	// Calling the function after click event occurs
-	burger.addEventListener('click', function() {
-			toggleNav();
+	document.querySelector('body').addEventListener('click', function() {
+		hideNavlist();
 	});
 
+	document.querySelector('.burger p').addEventListener('click', (e) => {
+		e.stopPropagation();
+		showNavlist();
+	});
+
+	document.querySelectorAll('.navlink').forEach((e) => {
+		e.addEventListener('click', function() {
+			e.stopPropagation();
+			hideNavlist();
+		});
+	});
+
+	const hideNavlist = () => {
+		nav.classList.remove('nav-active');
+	}
+
+	const showNavlist = () => {
+		nav.classList.add('nav-active');
+	}
+
+	/*
 	let buttonSections = document.querySelectorAll(".navlink");
 	for (let i = 0; i < buttonSections.length; i++) {
 		buttonSections[i].addEventListener("click", function() {
@@ -502,6 +471,7 @@
 			this.className += " active";
 		});
 	}
+	*/
 </script>
 </body>
 </html>
