@@ -69,7 +69,7 @@ header {
 
 .nav li {
     position: relative;
-    padding: 0.4rem 0.8rem;
+    margin: 0.4rem 0.7rem;
     font-size: 1.0em;
 }
 
@@ -118,6 +118,7 @@ header {
         width: 80px;
         right: 0;
         user-select: none;
+        cursor: pointer;
     }
 
     /* Vertical nav */
