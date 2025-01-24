@@ -88,7 +88,22 @@ header {
 
 /* hide the burger on big screens*/
 .burger {
-    display:none
+    display: none
+}
+
+.highlight{
+    font-weight: bold;
+}
+
+.highlight::before{
+    content: '💖 ';
+    line-height: 0px;
+}
+
+
+.highlight::after{
+    content: ' 💖';
+    line-height: 0px;
 }
 
 /* media stuff */
